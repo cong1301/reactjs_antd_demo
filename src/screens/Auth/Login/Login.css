@@ -1,0 +1,27 @@
+.footer {
+    flex-direction: 'row'
+}
+
+.container-form-layout {
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-form-layout {
+    width: 70%;
+    margin-top: -20px;
+}
+
+.resgiter-form {
+    width: 600px;
+    text-align: center;
+}
+
+.child-form-layout {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}

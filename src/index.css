@@ -1,0 +1,16 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+.app-content {
+  margin: 24px 16px;
+  padding: 24px;
+  min-height: 80vh;
+}
+
+.full-screen {
+  height: 100vh;
+}
+main {
+  overflow: auto;
+}

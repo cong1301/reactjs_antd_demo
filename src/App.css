@@ -1,120 +1,15 @@
-#components-layout-demo-custom-trigger .trigger {
-  padding: 0 24px;
-  font-size: 18px;
-  line-height: 64px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
+.trigger {
+  color: #333333 !important;
 }
 
 .site-layout .site-layout-background {
   background: #fff;
 }
 
-.upload-home {
-  padding: 20px;
-  cursor: pointer;
-}
-
 .ant-layout-sider-children {
-  background-color: #044b09;
-}
-
-.ant-menu-item-selected {
-  background-color: #117C72 !important;
-}
-
-.ant-menu-inline .ant-menu-item::after {
-  border-right: 3px solid #044b09 !important;
-}
-
-.ant-menu-item:hover,
-.ant-menu-item-active {
-  color: #fff !important;
-}
-
-.ant-menu-item-selected {
-  color: #fff !important;
-}
-
-.icon-color {
-  color: #fff;
+  background-color: white;
 }
 
 .ant-menu-title-content {
   user-select: none;
-}
-
-.ant-menu.ant-menu-dark,
-.ant-menu-dark .ant-menu-sub,
-.ant-menu.ant-menu-dark .ant-menu-sub {
-  background-color: #044b09 !important;
-}
-
-.trigger {
-  color: white !important;
-}
-
-.ant-pagination-item-active {
-  background-color: #37B59D !important;
-  border: none;
-}
-
-.ant-pagination-item-active a {
-  color: white;
-}
-
-.ant-pagination-item-active a:hover {
-  color: #ce36ba;
-}
-
-.ant-dropdown-menu {
-  border-radius: 10px !important;
-}
-
-.ant-pagination-item a:hover {
-  color: white;
-}
-
-.ant-pagination.ant-pagination-mini .ant-pagination-item:hover {
-  color: white;
-}
-
-.ant-select-arrow {
-  color: #37B59D !important
-}
-
-.ant-modal-close-x {
-  color: white;
-}
-
-.ant-btn-primary {
-  background: rgb(17, 124, 114);
-  border: none;
-}
-
-.ant-modal-header {
-  padding: 16px 24px;
-  color: rgba(0, 0, 0, 0.85);
-  background: rgb(17, 124, 114);
-  border-bottom: 1px solid #f0f0f0;
-  border-radius: 2px 2px 0 0;
-}
-
-.ant-modal-title {
-  margin: 0;
-  color: #fff;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  word-wrap: break-word;
 }

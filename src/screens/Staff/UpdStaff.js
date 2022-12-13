@@ -53,8 +53,6 @@ const UpdStaff = (props) => {
             visible={show}
             onCancel={handleCancelUpd}
             okButtonProps={{ form: 'updStaff', key: 'submit', htmlType: 'submit' }}
-            width={"30%"}
-            bodyStyle={{ borderRadius: '10px' }}
         >
             <Form form={form} id='updStaff' onFinish={onUpd} autoComplete="off" hideRequiredMark
                 labelCol={{ span: 24 }}
@@ -66,7 +64,7 @@ const UpdStaff = (props) => {
                     name="name"
                     rules={[{ required: true, message: 'Nhập họ và tên' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập họ và tên" />
+                    <Input placeholder="Nhập họ và tên" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -74,7 +72,7 @@ const UpdStaff = (props) => {
                     name="date"
                     rules={[{ required: true, message: 'Nhập ngày sinh' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập ngày sinh" />
+                    <Input placeholder="Nhập ngày sinh" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -82,7 +80,7 @@ const UpdStaff = (props) => {
                     name="email"
                     rules={[{ required: true, message: 'Nhập Email' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập Email" />
+                    <Input placeholder="Nhập Email" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -90,7 +88,7 @@ const UpdStaff = (props) => {
                     name="phone"
                     rules={[{ required: true, message: 'Nhập số điện thoại' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập số điện thoại" />
+                    <Input placeholder="Nhập số điện thoại" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -98,7 +96,7 @@ const UpdStaff = (props) => {
                     name="address"
                     rules={[{ required: true, message: 'Nhập địa chỉ' }]}
                 >
-                    <TextArea autoSize style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập địa chỉ" />
+                    <TextArea autoSize placeholder="Nhập địa chỉ" />
                 </Form.Item>
             </Form>
         </Modal>

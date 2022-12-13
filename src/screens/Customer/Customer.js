@@ -116,7 +116,7 @@ const Customer = () => {
                         <EditOutlined
                             style={{
                                 background: "#0693E3",
-                                borderRadius: 3,
+                                borderRadius: 5,
                                 fontSize: "12px",
                                 color: "white",
                                 padding: 5,
@@ -138,7 +138,7 @@ const Customer = () => {
                             <DeleteOutlined
                                 style={{
                                     background: "rgb(240, 65, 52)",
-                                    borderRadius: 3,
+                                    borderRadius: 5,
                                     fontSize: "12px",
                                     color: "white",
                                     padding: 5,
@@ -183,9 +183,9 @@ const Customer = () => {
                         <Breadcrumb.Item href="/">
                             <HomeOutlined />
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item href="/customer">
-                            <p className="breadcrumb-title">Danh sách khách hàng</p>
-                        </Breadcrumb.Item>
+                        <div style={{ color: 'black' }}>
+                            <b>Danh sách khách hàng</b>
+                        </div>
                     </Breadcrumb>
                 </Col>
             </Row>
@@ -200,11 +200,11 @@ const Customer = () => {
                 <Col xs={24} sm={24} md={24} lg={8} xl={8} />
                 <Col xs={24} sm={24} md={24} lg={8} xl={8}>
                     <Button
-                        style={{ marginLeft: "6px", backgroundColor: '#37B59D', borderRadius: 5, border: "#37B59D", float: 'right' }}
+                        style={{ float: 'right' }}
                         type="primary"
                         onClick={onShowIns}
                     >
-                        <PlusOutlined />Thêm khách hàng
+                        <PlusOutlined />Thêm
                     </Button>
                 </Col>
 
@@ -226,7 +226,7 @@ const Customer = () => {
                             // },
                             // pageSize: size,
                             // total: totalPage,
-                            showSizeChanger: false
+                            showSizeChanger: true
                         }}
                     />
                 </Col>

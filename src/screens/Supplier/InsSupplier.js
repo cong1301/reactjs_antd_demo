@@ -50,8 +50,6 @@ const InsSupplier = (props) => {
             visible={show}
             onCancel={handleCancelIns}
             okButtonProps={{ form: 'insSupplier', key: 'submit', htmlType: 'submit' }}
-            width={"30%"}
-            bodyStyle={{ borderRadius: '10px' }}
         >
             <Form form={form} id='insSupplier' onFinish={onIns} autoComplete="off" hideRequiredMark
                 labelCol={{ span: 24 }}
@@ -63,7 +61,7 @@ const InsSupplier = (props) => {
                     name="code"
                     rules={[{ required: true, message: 'Nhập mã nhà cung cấp' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập mã nhà cung cấp" />
+                    <Input placeholder="Nhập mã nhà cung cấp" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -71,7 +69,7 @@ const InsSupplier = (props) => {
                     name="name"
                     rules={[{ required: true, message: 'Nhập tên nhà cung cấp' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập tên nhà cung cấp" />
+                    <Input placeholder="Nhập tên nhà cung cấp" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -79,7 +77,7 @@ const InsSupplier = (props) => {
                     name="phone"
                     rules={[{ required: true, message: 'Nhập số điện thoại' }]}
                 >
-                    <Input style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập số điện thoại" />
+                    <Input placeholder="Nhập số điện thoại" />
                 </Form.Item>
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
@@ -87,7 +85,7 @@ const InsSupplier = (props) => {
                     name="address"
                     rules={[{ required: true, message: 'Nhập địa chỉ' }]}
                 >
-                    <TextArea autoSize style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập địa chỉ" />
+                    <TextArea autoSize placeholder="Nhập địa chỉ" />
                 </Form.Item>
             </Form>
         </Modal>

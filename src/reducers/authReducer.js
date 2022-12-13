@@ -14,7 +14,7 @@ export const getDataAction = (data) => ({
     data
 });
 
-// reset data
+
 export const reset = () => ({
     type: RESET,
 });
@@ -30,8 +30,6 @@ export const login = (params, meta) => async (dispatch) => {
         meta.onError(err);
     }
 };
-
-
 
 
 export const logout = () => {

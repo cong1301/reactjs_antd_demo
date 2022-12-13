@@ -107,7 +107,7 @@ const Supplier = () => {
                         <EditOutlined
                             style={{
                                 background: "#117C72",
-                                borderRadius: 3,
+                                borderRadius: 5,
                                 fontSize: "12px",
                                 color: "white",
                                 padding: 5,
@@ -129,7 +129,7 @@ const Supplier = () => {
                             <DeleteOutlined
                                 style={{
                                     background: "rgb(240, 65, 52)",
-                                    borderRadius: 3,
+                                    borderRadius: 5,
                                     fontSize: "12px",
                                     color: "white",
                                     padding: 5,
@@ -174,9 +174,9 @@ const Supplier = () => {
                         <Breadcrumb.Item href="/">
                             <HomeOutlined />
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item href="/">
-                            <p className="breadcrumb-title">Danh sách nhà cung cấp</p>
-                        </Breadcrumb.Item>
+                        <div style={{ color: 'black' }}>
+                            <b>Danh sách nhà cung cấp</b>
+                        </div>
                     </Breadcrumb>
                 </Col>
             </Row>
@@ -191,23 +191,16 @@ const Supplier = () => {
                 <Col xs={24} sm={24} md={24} lg={8} xl={8}></Col>
                 <Col xs={24} sm={24} md={24} lg={8} xl={8}>
                     <Button
-                        style={{ marginLeft: "6px", backgroundColor: '#117C72', borderRadius: 5, border: "#117C72", float: 'right' }}
+                        style={{ float: 'right' }}
                         type="primary"
                         onClick={onShowIns}
                     >
-                        <PlusOutlined />Thêm nhà cung cấp
+                        <PlusOutlined />Thêm
                     </Button>
                 </Col>
 
                 <Col span={24} style={{ paddingTop: '20px' }}>
                     <Table
-                        rowSelection={{
-                            // selectedRows: selectedRows,
-                            // selectedRowKeys: selectedKeys,
-                            // onChange: (selectedRowKeys, selectedRows) => {
-                            //     onChangeRowSelectedData(selectedRowKeys, selectedRows)
-                            // }
-                        }}
                         columns={columns}
                         dataSource={data}
                         size="small"
@@ -217,7 +210,7 @@ const Supplier = () => {
                             // },
                             // pageSize: size,
                             // total: totalPage,
-                            showSizeChanger: false
+                            showSizeChanger: true
                         }}
                     />
                 </Col>

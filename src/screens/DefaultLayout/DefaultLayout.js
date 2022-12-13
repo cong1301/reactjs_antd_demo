@@ -6,7 +6,6 @@ import routes from '../../routes'
 import Header from './DefaultHeader'
 import Footer from './DefaultFooter'
 import Sidebar from './DefaultSidebar'
-import "antd/dist/antd.css";
 const { Content } = Layout;
 
 const HomeLayout = () => {

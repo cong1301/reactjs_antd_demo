@@ -5,8 +5,9 @@ import UserDropdown from "../../components/UserDropdown";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout, reset } from "../../reducers/authReducer"
+import { reset } from "../../reducers/authReducer"
 import ChangePassUserLogin from '../User/ChangePassUserLogin';
+import logo from '../../assets/Kong.jpg'
 const { Header } = Layout;
 
 export default function DefaultHeader({ toggle, collapsed }) {
@@ -45,32 +46,32 @@ export default function DefaultHeader({ toggle, collapsed }) {
 
 
   return (
-    <Header className="site-layout-background" style={{ padding: 0, backgroundColor: '#117C72' }}>
+    <Header className="site-layout-background" style={{ padding: 0, backgroundColor: '#D9E3F0' }}>
 
       <Row xs={24} sm={24} md={24} lg={24} xl={24} span={24}>
-        <Col xs={12} sm={12} md={12} lg={8} xl={8} span={8}>
+        <Col xs={6} sm={6} md={6} lg={6} xl={6} span={6}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: "trigger custom-ic",
             onClick: toggle,
           })}
         </Col>
-        <Col xs={0} sm={0} md={0} lg={8} xl={8} span={8}></Col>
-        <Col xs={0} sm={0} md={0} lg={2} xl={2} span={2} ></Col>
-        <Col xs={0} sm={0} md={0} lg={3} xl={3} span={3} >
-          {/* <div className="hoverNoti" style={{ cursor: 'pointer', textAlign: "center", paddingTop: "10px", marginTop: '2px', width: '25%', marginLeft: '60%', border: '1px solid #FFFFFF', borderRadius: '25px' }}>
-            <BadgeNote />
-          </div> */}
-        </Col>
-        <Col xs={12} sm={12} md={12} lg={3} xl={3} span={3} >
-          <div className="hoverUser" style={{ height: '100%', borderRadius: '25px' }}>
-            <UserDropdown onClick={onChangeProfile} logOut={logOut} onChangePassword={onChangePassword}>
-              <Avatar
-                src={'https://www.w3schools.com/howto/img_avatar.png'}
-              />
-              <a style={{ paddingLeft: "15px", color: 'white' }}><b>Admin</b></a>
-            </UserDropdown>
 
-          </div>
+        <Col span={18}>
+          <Row span={24}>
+            <Col span={20} ></Col>
+            <Col span={2}>
+            </Col>
+            <Col span={2} >
+              <div className="hoverUser" style={{ borderRadius: '20px', textAlign: "center", marginLeft: '20%' }}>
+                <UserDropdown onClick={onChangeProfile} logOut={logOut} onChangePassword={onChangePassword}>
+                  <Avatar
+                    src={logo}
+                  />
+                </UserDropdown>
+              </div>
+            </Col>
+          </Row>
+
         </Col>
       </Row>
 
@@ -79,6 +80,5 @@ export default function DefaultHeader({ toggle, collapsed }) {
         handleCancel={onCancelShow}
       />
     </Header >
-
   )
 }

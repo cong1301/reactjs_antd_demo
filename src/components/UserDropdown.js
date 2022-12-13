@@ -12,6 +12,9 @@ const UserDropdown = (
 ) => {
     const menu = (
         <Menu>
+            <Menu.Item key="name" onClick={onClick}>
+                <a style={{ paddingLeft: "15px", color: '#333333' }}><b>Admin </b></a>
+            </Menu.Item>
             <Menu.Item key="profile" onClick={onClick}>
                 <UserOutlined /> Thông tin
             </Menu.Item>
@@ -27,15 +30,7 @@ const UserDropdown = (
 
     return (
         <Dropdown trigger={['click']} overlay={menu} >
-            <div
-                style={{
-                    width: '85%',
-                    display: 'inline-block',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                    borderRadius: '30px',
-                }}
-            >
+            <div style={{ width: '85%', display: 'inline-block', textAlign: 'left', cursor: 'pointer', borderRadius: '30px' }}>
                 {children}
             </div>
         </Dropdown>

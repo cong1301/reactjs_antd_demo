@@ -41,22 +41,18 @@ export default function ChangePassUserLogin(props) {
             visible={show}
             okButtonProps={{ form: 'insPassUser-form', key: 'submit', htmlType: 'submit' }}
             onCancel={handleCancel}
-            width={"30%"}
         >
             <Form form={form} hideRequiredMark id='insPassUser-form' name="nest-messages" onFinish={onChangpass} autoComplete="off"
-                labelCol={{
-                    span: 24,
-                }}
-                wrapperCol={{
-                    span: 24,
-                }}>
+                labelCol={{ span: 24, }}
+                wrapperCol={{ span: 24, }}
+            >
                 <Form.Item
                     style={{ fontWeight: 'bold' }}
                     label="Mật khẩu mới"
                     name="newPassword"
                     rules={[{ required: true, message: 'Nhập mật khẩu mới' }]}
                 >
-                    <Input.Password style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Nhập mật khẩu mới" />
+                    <Input.Password placeholder="Nhập mật khẩu mới" />
                 </Form.Item>
                 <Form.Item
                     label="Xác nhận mật khẩu"
@@ -64,7 +60,7 @@ export default function ChangePassUserLogin(props) {
                     name="checkPassword"
                     rules={[{ required: true, message: 'Nhập lại mật khẩu mới' }]}
                 >
-                    <Input.Password style={{ borderRadius: 5, border: '1px solid #37B59D' }} placeholder="Xác nhận mật khẩu mới" />
+                    <Input.Password placeholder="Xác nhận mật khẩu mới" />
                 </Form.Item>
             </Form>
         </Modal>

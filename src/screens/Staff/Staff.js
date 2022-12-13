@@ -115,7 +115,7 @@ const Staff = () => {
                         <EditOutlined
                             style={{
                                 background: "#0693E3",
-                                borderRadius: 3,
+                                borderRadius: 5,
                                 fontSize: "12px",
                                 color: "white",
                                 padding: 5,
@@ -137,7 +137,7 @@ const Staff = () => {
                             <DeleteOutlined
                                 style={{
                                     background: "rgb(240, 65, 52)",
-                                    borderRadius: 3,
+                                    borderRadius: 5,
                                     fontSize: "12px",
                                     color: "white",
                                     padding: 5,
@@ -182,9 +182,9 @@ const Staff = () => {
                         <Breadcrumb.Item href="/">
                             <HomeOutlined />
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item href="/staff">
-                            <p className="breadcrumb-title">Danh sách nhân viên</p>
-                        </Breadcrumb.Item>
+                        <div style={{ color: 'black' }}>
+                            <b>Danh sách nhân viên</b>
+                        </div>
                     </Breadcrumb>
                 </Col>
             </Row>
@@ -199,11 +199,11 @@ const Staff = () => {
                 <Col xs={24} sm={24} md={24} lg={8} xl={8} />
                 <Col xs={24} sm={24} md={24} lg={8} xl={8}>
                     <Button
-                        style={{ marginLeft: "6px", backgroundColor: '#37B59D', borderRadius: 5, border: "#37B59D", float: 'right' }}
+                        style={{ float: 'right' }}
                         type="primary"
                         onClick={onShowIns}
                     >
-                        <PlusOutlined />Thêm nhân viên
+                        <PlusOutlined />Thêm
                     </Button>
                 </Col>
 
@@ -225,7 +225,7 @@ const Staff = () => {
                             // },
                             // pageSize: size,
                             // total: totalPage,
-                            showSizeChanger: false
+                            showSizeChanger: true
                         }}
                     />
                 </Col>

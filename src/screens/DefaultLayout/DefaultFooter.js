@@ -6,6 +6,6 @@ const { Footer } = Layout;
 
 export default function DefaultFooter() {
   return (
-    <Footer style={{ textAlign: 'center' }}></Footer>
+    <Footer> </Footer>
   )
 }

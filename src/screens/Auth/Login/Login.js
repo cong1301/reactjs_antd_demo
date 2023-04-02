@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Button, Card, Col, Form, Input, Row, message, Image } from "antd";
+import React, { useRef } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
 import { login } from "../../../reducers/authReducer";
-import bkbg from "../../../assets/reactjs1.jpg";
-import "./Login.css";
+import { Col, Form, Row, Image, notification } from "antd";
+import { CardStyle, InputUserName, InputPassWord, ButtonLogin, Line } from './styles';
+
 const Login = () => {
   const dispatch = useDispatch();
+  const inputRef = useRef()
+
   const [form] = Form.useForm();
   const token = useSelector((store) => store.authReducer.token);
 
@@ -18,9 +20,17 @@ const Login = () => {
     dispatch(
       login(body, {
         onError: (err) => {
-          if (err.status === 400 && err.data.error === "Bad credentials")
-            message.error("Sai thông tin đăng nhập!");
-        },
+          if (err.status === 400 && err.data.error === "Bad credentials") {
+            notification.error({
+              message: `Sai thông tin đăng nhập`,
+            })
+            inputRef.current.focus()
+            form.setFieldsValue({
+              username: "",
+              password: "",
+            });
+          }
+        }
       })
     );
   };
@@ -29,101 +39,48 @@ const Login = () => {
     <Redirect to="/" />
   ) : (
     <>
-      <div style={{ backgroundImage: "url(" + bkbg + ")", height: "100%", backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-        <Row>
-          <Col span={14}></Col>
-          <Col span={10}>
-            <div class="container-form-layout">
-              <Form
-                form={form}
-                hideRequiredMark
-                id="insUser-form"
-                name="normal_Resgiter"
-                className="resgiter-form"
-                onFinish={onLogin}
-                autoComplete="off"
-              >
-                <Card
-                  bordered={false}
-                  bodyStyle={{ backgroundColor: "#ffffff", borderRadius: 20 }}
-                  style={{
-                    maxWidth: "75%",
-                    display: "block",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    background: "white",
-                    borderRadius: "50px",
-                    boxShadow:
-                      "0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-                  }}
+      <Row span={24} >
+        <Col xs={0} sm={0} md={0} lg={3} xl={3} xxl={3} />
+        <Col xs={24} sm={24} md={24} lg={18} xl={18} xxl={18} >
+          <Row span={24} style={{ paddingTop: 50, paddingBottom: 50 }}>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} >
+              <div style={{ marginTop: 110, textAlign: 'center' }}>
+                {/* <img width="80%" height="180" src={logo} /> */}
+              </div>
+            </Col>
 
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={10} >
+              <CardStyle bordered={false} bodyStyle={{ backgroundColor: "#D9E3F0", borderRadius: 10 }}  >
+
+                <Form
+                  form={form}
+                  onFinish={onLogin}
+                  autoComplete="off"
                 >
-                  <div>
-                    <h1 style={{ textAlign: "center" }}>
-                      <b>Đăng nhập</b>
-                    </h1>
-                  </div>
 
-                  <Form.Item
-                    style={{ fontWeight: "bold" }}
-                    name="username"
-                    rules={[{ required: true, message: "Nhập tên đăng nhập" }]}
-                  >
-                    <Input
-                      style={{ padding: "10px 20px", borderRadius: 6 }}
-                      placeholder="Nhập tên đăng nhập"
-                    />
+                  <Form.Item name="username" rules={[{ required: true, message: "Nhập tài khoản" }]}>
+                    <InputUserName ref={inputRef} placeholder="Tài khoản" />
                   </Form.Item>
 
-                  <Form.Item
-                    style={{ fontWeight: "bold" }}
-                    name="password"
-                    rules={[{ required: true, message: "Nhập mật khẩu" }]}
-                  >
-                    <Input.Password
-                      style={{ padding: "10px 20px", borderRadius: 6 }}
-                      placeholder="Nhập mật khẩu"
-                    />
+                  <Form.Item name="password" rules={[{ required: true, message: "Nhập mật khẩu" }]}  >
+                    <InputPassWord placeholder="Mật khẩu" />
                   </Form.Item>
+
                   <Form.Item>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{
-                        width: "100%",
-                        height: "5vh",
-                        borderRadius: 5,
-                        backgroundColor: "#1877f2",
-                        border: "none",
-                        fontWeight: "bold",
-                        fontSize: "1.3em",
-                      }}
-                    >
-                      Đăng Nhập
-                    </Button>
+                    <ButtonLogin type="primary" htmlType="submit" >
+                      Đăng nhập
+                    </ButtonLogin>
                   </Form.Item>
-                  <hr></hr>
-                  <br></br>
-                  <Form.Item>
-                    <Button
-                      type="primary"
-                      style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', height: '5vh', borderRadius: 5, backgroundColor: '#42b72a', color: 'white', border: 'none', fontWeight: 'bold', fontSize: '1.3em' }}
-                    >
-                      <Link to={"/register"}>
-                        {" "}
-                        <span style={{}}>
-                          {" "}
-                          Tạo tài khoản mới{" "}
-                        </span>
-                      </Link>
-                    </Button>
-                  </Form.Item>
-                </Card>
-              </Form>
-            </div>
-          </Col>
-        </Row>
-      </div>
+
+                  <Line />
+                </Form>
+              </CardStyle>
+            </Col>
+            <Col xs={0} sm={0} md={0} lg={0} xl={0} xxl={2} />
+          </Row>
+        </Col>
+        <Col xs={0} sm={0} md={0} lg={3} xl={3} xxl={3} />
+      </Row >
     </>
   );
 };

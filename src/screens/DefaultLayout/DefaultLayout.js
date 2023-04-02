@@ -4,8 +4,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import './DefaultLayout.css'
 import routes from '../../routes'
 import Header from './DefaultHeader'
-import Footer from './DefaultFooter'
 import Sidebar from './DefaultSidebar'
+import styled from 'styled-components';
 const { Content } = Layout;
 
 const HomeLayout = () => {
@@ -19,13 +19,7 @@ const HomeLayout = () => {
       <Sidebar collapsed={collapsed} />
       <Layout className="site-layout full-screen">
         <Header toggle={toggle} collapsed={collapsed} />
-        <Content className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            borderRadius: 10,
-          }}>
+        <ContentStyle>
           <Suspense fallback={loading}>
             <Switch>
               {routes.map((route, idx) => {
@@ -43,10 +37,17 @@ const HomeLayout = () => {
               <Redirect from="/" to="/" />
             </Switch>
           </Suspense>
-        </Content>
-        <Footer />
+        </ContentStyle>
       </Layout>
     </Layout>
   )
 }
 export default HomeLayout
+
+const ContentStyle = styled(Content)`
+  margin: 18px;
+  padding: 18px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #D9D9D9;
+`;

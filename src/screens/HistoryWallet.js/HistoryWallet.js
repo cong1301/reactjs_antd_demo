@@ -12,7 +12,8 @@ import { ButtonRollBack, ButtonSreach } from '../../Styles/ButtonStyles';
 import { dataTable } from '../../constant/DataFake';
 import { PopoverDelete, PopoverEdit } from '../../Styles/PopoverStyles';
 
-export default function Customer() {
+export default function HistoryWallet() {
+
   const dateFormat = "DD-MM-YYYY";
   const today = new Date();
   const todayDate = new Date().toLocaleDateString("sv-SE");
@@ -173,7 +174,7 @@ export default function Customer() {
           <Breadcrumb.Item>
             <Link to={"/"} > <HomeOutlined /> </Link>
           </Breadcrumb.Item>
-          <Title> <b>Danh sách khách hàng</b> </Title>
+          <Title> <b>Lịch sử thanh toán</b> </Title>
         </Breadcrumb>
       </Row>
 

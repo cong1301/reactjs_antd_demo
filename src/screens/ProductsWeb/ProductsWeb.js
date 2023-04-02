@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, Col, Row, Space, Table, Tooltip } from 'antd'
-import { HomeOutlined, SearchOutlined, ReloadOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Breadcrumb, Button, Col, Row } from 'antd'
+import { HomeOutlined, SearchOutlined, ReloadOutlined } from "@ant-design/icons";
 import { ColFilter, RowFilter, RowStyle, Title } from './styles'
 import Filter from '../../components/Filter/Filter';
 import FilterTime from '../../components/Filter/FilterTime';
@@ -9,10 +9,8 @@ import CustomSreach from '../../components/Sreach/Sreach';
 import dayjs from 'dayjs';
 import moment from "moment";
 import { ButtonRollBack, ButtonSreach } from '../../Styles/ButtonStyles';
-import { dataTable } from '../../constant/DataFake';
-import { PopoverDelete, PopoverEdit } from '../../Styles/PopoverStyles';
+export default function ProductsWeb() {
 
-export default function Customer() {
   const dateFormat = "DD-MM-YYYY";
   const today = new Date();
   const todayDate = new Date().toLocaleDateString("sv-SE");
@@ -70,102 +68,6 @@ export default function Customer() {
     setQuery(e.target.value)
   }
 
-  const columns = [
-    {
-      title: "STT",
-      dataIndex: "stt",
-      render: (t, r, i) => i + 1,
-      width: "5%",
-      ellipsis: {
-        showTitle: false,
-      },
-    },
-    {
-      title: "Name ",
-      dataIndex: "name",
-      key: "name",
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (value) => (
-        <Tooltip placement="topLeft" title={value}>
-          {value}
-        </Tooltip>
-      ),
-    },
-    {
-      title: "Chinese ",
-      dataIndex: "chinese",
-      key: "chinese",
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (value) => (
-        <Tooltip placement="topLeft" title={value}>
-          {value}
-        </Tooltip>
-      ),
-    },
-    {
-      title: "Math",
-      dataIndex: "math",
-      key: "math",
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (value) => (
-        <Tooltip placement="topLeft" title={value}>
-          {value}
-        </Tooltip>
-      ),
-    },
-    {
-      title: "English ",
-      dataIndex: "english",
-      key: "english",
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (value) => (
-        <Tooltip placement="topLeft" title={value}>
-          {value}
-        </Tooltip>
-      ),
-    },
-    {
-      title: "Chinese ",
-      dataIndex: "chinese",
-      key: "chinese",
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (value) => (
-        <Tooltip placement="topLeft" title={value}>
-          {value}
-        </Tooltip>
-      ),
-    },
-    {
-      title: "Chức năng",
-      key: "action",
-      fixed: 'right',
-      render: (record) => (
-        <Space>
-          <PopoverEdit content={<h4>Sửa thông tin</h4>}>
-            <EditOutlined onClick={OnEdit} />
-          </PopoverEdit>
-          <PopoverDelete content={<h4>Xóa thông tin</h4>}>
-            <DeleteOutlined onClick={OnEdit} />
-          </PopoverDelete>
-        </Space>
-      ),
-    },
-  ];
-
-  const OnEdit = () => {
-
-  }
-
   return (
     <>
       <Row span={24}>
@@ -173,7 +75,7 @@ export default function Customer() {
           <Breadcrumb.Item>
             <Link to={"/"} > <HomeOutlined /> </Link>
           </Breadcrumb.Item>
-          <Title> <b>Danh sách khách hàng</b> </Title>
+          <Title> <b>Sản phẩm Web</b> </Title>
         </Breadcrumb>
       </Row>
 
@@ -210,17 +112,6 @@ export default function Customer() {
             </RowFilter>
             : null}
         </ColFilter>
-      </RowStyle>
-
-      <RowStyle span={24} >
-        <Col span={24} >
-          <Table
-            columns={columns}
-            dataSource={dataTable}
-            size="small"
-            scroll={{ x: 'calc(350px + 50%)' }}
-          />
-        </Col>
       </RowStyle>
     </>
   )

@@ -9,10 +9,10 @@ import CustomSreach from '../../components/Sreach/Sreach';
 import dayjs from 'dayjs';
 import moment from "moment";
 import { ButtonRollBack, ButtonSreach } from '../../Styles/ButtonStyles';
-import { dataTable } from '../../constant/DataFake';
 import { PopoverDelete, PopoverEdit } from '../../Styles/PopoverStyles';
+import { dataTable } from '../../constant/DataFake';
+export default function Bill() {
 
-export default function Customer() {
   const dateFormat = "DD-MM-YYYY";
   const today = new Date();
   const todayDate = new Date().toLocaleDateString("sv-SE");
@@ -173,7 +173,7 @@ export default function Customer() {
           <Breadcrumb.Item>
             <Link to={"/"} > <HomeOutlined /> </Link>
           </Breadcrumb.Item>
-          <Title> <b>Danh sách khách hàng</b> </Title>
+          <Title> <b>Danh sách đơn hàng</b> </Title>
         </Breadcrumb>
       </Row>
 

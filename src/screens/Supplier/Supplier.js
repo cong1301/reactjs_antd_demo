@@ -1,231 +1,158 @@
-import React, { useState, useEffect } from "react";
-import { Breadcrumb, Button, Col, Popconfirm, Popover, Row, Space, Table, Tooltip } from 'antd';
-import { EditOutlined, DeleteOutlined, PlusOutlined, HomeOutlined } from '@ant-design/icons';
-import CustomSreach from '../../constant/Sreach';
-import InsSupplier from "./InsSupplier";
-import UpdSupplier from "./UpdSupplier";
-import './Supplier.css'
-const Supplier = () => {
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from '../../services/Api'
+import ImgCrop from 'antd-img-crop';
+import { Col, Row, Form, Upload, Breadcrumb, Image } from "antd";
+import { Title, FormItem, LayoutImage, ButtonSave, RowStyle } from './styles';
+import { HomeOutlined, PlusOutlined } from "@ant-design/icons";
+import { ErrorType } from '../../constant/ErrorType';
+import { InputStyle, TextAreaStyle } from '../../Styles/InputStyles';
 
-    const [showIns, setShowIns] = useState({ show: false })
-    const [showUpd, setShowUpd] = useState({ show: false, id: null })
+const JWT_HEADER = () => ({
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Cache: 'no-cache',
+})
 
-    const data = [
-        {
-            key: '1',
-            code: 'CPGD22',
-            name: 'Nhà cung cấp 1',
-            address: 'Cầu Giấy, Hà Nội',
-            phone: '0977837222',
-            status: 'Hoạt động',
-        },
-        {
-            key: '2',
-            code: 'CPGD22',
-            name: 'Nhà cung cấp 2',
-            address: 'HCM',
-            phone: '0977827422',
-            status: 'Hoạt động',
-        },
-        {
-            key: '3',
-            code: 'CPGD22',
-            name: 'Nhà cung cấp 3',
-            address: 'Đà Nẵng',
-            phone: '0962827422',
-            status: 'Tắt',
-        },
-    ];
+export default function Supplier() {
+    const dispatch = useDispatch();
+    const [form] = Form.useForm();
 
-    const columns = [
-        {
-            title: 'STT',
-            dataIndex: 'stt',
-            render: (t, r, i) => i + 1,
-            with: '5%'
-        },
-        {
-            title: 'Mã nhà cung cấp',
-            dataIndex: 'code',
-            key: 'code',
-        },
-        {
-            title: 'Tên nhà cung cấp',
-            dataIndex: 'name',
-            key: 'name',
-            with: '10%'
-        },
-        {
-            title: 'Địa chỉ',
-            dataIndex: 'address',
-            key: 'address',
-            width: '20%',
-            ellipsis: {
-                showTitle: false,
-            },
-            render: (value) => (
-                <Tooltip placement="topLeft" title={value}>
-                    {value}
-                </Tooltip>
-            )
-        },
-        {
-            title: 'Số điện thoại',
-            dataIndex: 'phone',
-            key: 'phone',
-            with: '10%'
-        },
-        {
-            title: 'Trạng thái',
-            dataIndex: 'status',
-            key: 'status',
-            with: '10%',
-            render: (value) => (
-                <span
-                    style={{
-                        background: value === "Hoạt động" ? "#B3E5D1" : "#E5B4B3",
-                        borderRadius: 5,
-                        fontSize: "14px",
-                        color: value === "Hoạt động" ? "#194D3A" : "#863A2D",
-                        padding: 4,
-                        border: value === "Hoạt động" ? "1px solid #B3E5D1" : "1px solid #E5B4B3",
-                    }}
-                >
-                    {value}
-                </span>
-            ),
-        },
-        {
-            title: 'Chức năng',
-            key: 'action',
-            with: '10%',
-            render: (record) => (
-                <Space>
-                    <Popover
-                        content={<h4> Sửa thông tin</h4>}
-                    >
-                        <EditOutlined
-                            style={{
-                                background: "#117C72",
-                                borderRadius: 5,
-                                fontSize: "12px",
-                                color: "white",
-                                padding: 5,
-                                border: "1px solid #117C72",
-                            }}
-                            onClick={() => {
-                                setShowUpd({
-                                    show: true,
-                                    id: record?.id,
-                                });
-                            }}
-                        />
-                    </Popover>
+    const [images, setImages] = useState("");
 
-                    <Popconfirm title="Bạn có chắc chắn muốn xóa nhà cung cấp?"
-                    // onConfirm={() => onDelete(record)}
-                    >
-                        <Popover content={<h4> Xóa nhà cung cấp</h4>} >
-                            <DeleteOutlined
-                                style={{
-                                    background: "rgb(240, 65, 52)",
-                                    borderRadius: 5,
-                                    fontSize: "12px",
-                                    color: "white",
-                                    padding: 5,
-                                    border: "1px solid rgb(240, 65, 52)",
-                                }}
-                            />
-                        </Popover>
-                    </Popconfirm>
-                </Space>
-            ),
-        },
-    ];
-
-    useEffect(() => {
-
-    }, []);
-
-    const onShowIns = async () => {
-        setShowIns({
-            show: true
-        });
+    const handleChangeLogo = (info) => {
+        let fileList = [...info.fileList];
+        let urlList = [];
+        const { status } = info.file;
+        if (status === "done") {
+            fileList.map((file) => {
+                if (file.response) {
+                    file.url = file.response.image;
+                    urlList.push(file.url?.toString());
+                }
+                return file;
+            });
+            setImages(urlList.toString());
+        } else if (status === "error") {
+        }
     };
 
-    const onCancelShowIns = () => {
-        setShowIns({
-            show: false
-        });
-    };
-
-    const onCancelShowUpd = () => {
-        setShowUpd({
-            show: false,
-            id: null
-        });
-    };
+    const onSave = (value) => {
+        const body = {
+            image: images,
+            name: value.name,
+            link: value.link,
+            phone: value.phone,
+            email: value.email,
+            address: value.address,
+        };
+        console.log("body", body)
+    }
 
     return (
         <>
             <Row span={24}>
-                <Col span={24}>
-                    <Breadcrumb>
-                        <Breadcrumb.Item href="/">
-                            <HomeOutlined />
-                        </Breadcrumb.Item>
-                        <div style={{ color: 'black' }}>
-                            <b>Danh sách nhà cung cấp</b>
-                        </div>
-                    </Breadcrumb>
-                </Col>
+                <Breadcrumb>
+                    <Breadcrumb.Item>
+                        <Link to={"/"} > <HomeOutlined /> </Link>
+                    </Breadcrumb.Item>
+                    <Title> <b>Thông tin liên hệ</b> </Title>
+                </Breadcrumb>
             </Row>
 
-            <Row span={24} style={{ paddingTop: '20px' }}>
-
-                <Col xs={24} sm={24} md={24} lg={8} xl={8} >
-                    <div className="customer-search">
-                        <CustomSreach />
-                    </div>
-                </Col>
-                <Col xs={24} sm={24} md={24} lg={8} xl={8}></Col>
-                <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                    <Button
-                        style={{ float: 'right' }}
-                        type="primary"
-                        onClick={onShowIns}
+            <RowStyle span={24}>
+                <Col xs={0} sm={0} md={1} lg={2} xl={2} xxl={2} />
+                <Col xs={24} sm={24} md={22} lg={18} xl={18} xxl={18}>
+                    <Form
+                        form={form}
+                        onFinish={onSave}
+                        autoComplete="off"
+                        labelCol={{ xs: 24, sm: 11, md: 8, lg: 6, xl: 6, xxl: 4 }}
+                        wrapperCol={{ xs: 24, sm: 13, md: 16, lg: 18, xl: 18, xxl: 20 }}
                     >
-                        <PlusOutlined />Thêm
-                    </Button>
-                </Col>
+                        <Row span={24}>
+                            <Col span={24}>
+                                <FormItem label="Logo"  >
+                                    <ImgCrop rotate>
+                                        <Upload
+                                            name="file"
+                                            listType="picture-card"
+                                            className="avatar-uploader"
+                                            showUploadList={false}
+                                            action={`${process.env.REACT_APP_API_KEY}/image/upload`}
+                                            headers={JWT_HEADER}
+                                            method="POST"
+                                            onChange={handleChangeLogo}
+                                        >
+                                            {images ? (
+                                                <Image
+                                                    className='imgLogo'
+                                                    src={`${process.env.REACT_APP_API_KEY}${images}`}
+                                                    alt="avatar"
+                                                    preview={false}
+                                                />
+                                            ) : (
+                                                <div>
+                                                    <PlusOutlined />
+                                                    <LayoutImage >Tải ảnh</LayoutImage>
+                                                </div>
+                                            )}
+                                        </Upload>
+                                    </ImgCrop>
+                                </FormItem>
 
-                <Col span={24} style={{ paddingTop: '20px' }}>
-                    <Table
-                        columns={columns}
-                        dataSource={data}
-                        size="small"
-                        pagination={{
-                            // onChange: page => {
-                            //     setPage(page - 1)
-                            // },
-                            // pageSize: size,
-                            // total: totalPage,
-                            showSizeChanger: true
-                        }}
-                    />
+                                <FormItem
+                                    label="Tên nhà cung cấp"
+                                    name="name"
+                                    rules={[{ required: true, message: "Nhập tên nhà cung cấp" }]}
+                                >
+                                    <InputStyle placeholder="Tên nhà cung cấp" />
+                                </FormItem>
+
+                                <FormItem
+                                    label="Link web"
+                                    name="link"
+                                >
+                                    <InputStyle placeholder="Link Web" />
+                                </FormItem>
+
+                                <FormItem
+                                    label="Số điện thoại"
+                                    name="phone"
+                                    rules={[{ required: true, message: "Nhập số điện thoại" }]}
+                                >
+                                    <InputStyle placeholder="Số điện thoại" />
+                                </FormItem>
+
+                                <FormItem
+                                    label="Email"
+                                    name="email"
+                                    rules={[{ required: true, message: "Nhập Email" }]}
+                                >
+                                    <InputStyle placeholder="Email" />
+                                </FormItem>
+
+                                <FormItem
+                                    label="Địa chỉ"
+                                    name="address"
+                                    rules={[{ required: true, message: "Nhập địa chỉ" }]}
+                                >
+                                    <TextAreaStyle autoSize placeholder="Địa chỉ" />
+                                </FormItem>
+                            </Col>
+
+                            <Col span={24}>
+                                <ButtonSave type="primary" htmlType="submit" >
+                                    Lưu thông tin
+                                </ButtonSave>
+                            </Col>
+
+                        </Row>
+                    </Form>
                 </Col>
-            </Row>
-            <InsSupplier
-                show={showIns.show}
-                handleCancel={onCancelShowIns}
-            />
-            <UpdSupplier
-                show={showUpd.show}
-                id={showUpd.id}
-                handleCancel={onCancelShowUpd}
-            />
+                <Col xs={0} sm={0} md={1} lg={4} xl={4} xxl={4} />
+            </RowStyle>
         </>
     )
 }
-
-export default Supplier

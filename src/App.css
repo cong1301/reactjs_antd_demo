@@ -2,14 +2,11 @@
   color: #333333 !important;
 }
 
-.site-layout .site-layout-background {
-  background: #fff;
-}
-
-.ant-layout-sider-children {
-  background-color: white;
-}
 
 .ant-menu-title-content {
+  user-select: none;
+}
+
+.ant-tabs-tab-btn {
   user-select: none;
 }

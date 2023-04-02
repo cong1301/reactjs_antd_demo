@@ -1,6 +1,11 @@
 import React from 'react'
+import { useDispatch } from "react-redux";
 import { Form, Input, message, Modal, notification } from 'antd';
+import styled from 'styled-components';
+
 export default function ChangePassUserLogin(props) {
+    const dispatch = useDispatch();
+
     const { show, handleCancel } = props;
     const [form] = Form.useForm();
 
@@ -9,7 +14,8 @@ export default function ChangePassUserLogin(props) {
             message.error('Xác nhận mật khẩu không đúng');
         } else {
             const body = {
-                password: values?.checkPassword,
+                currentPassword: values?.currentPassword,
+                newPassword: values?.newPassword,
             };
             // dispatch(
             //     changPassLogin(body, {
@@ -21,7 +27,7 @@ export default function ChangePassUserLogin(props) {
             //         },
             //         onError: () =>
             //             notification.error({
-            //                 message: `Thất bại`,
+            //                 message: `Đổi mật khẩu thất bại - mật khẩu cũ không đúng`,
             //             })
             //     })
             // );
@@ -38,31 +44,35 @@ export default function ChangePassUserLogin(props) {
     return (
         <Modal
             title={`Đổi mật khẩu`}
-            visible={show}
+            open={show}
             okButtonProps={{ form: 'insPassUser-form', key: 'submit', htmlType: 'submit' }}
-            onCancel={handleCancel}
+            onCancel={onClose}
         >
-            <Form form={form} hideRequiredMark id='insPassUser-form' name="nest-messages" onFinish={onChangpass} autoComplete="off"
-                labelCol={{ span: 24, }}
-                wrapperCol={{ span: 24, }}
-            >
-                <Form.Item
-                    style={{ fontWeight: 'bold' }}
+            <Form form={form} id='insPassUser-form' name="nest-messages" onFinish={onChangpass} autoComplete="off"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}>
+
+                <FormItem
                     label="Mật khẩu mới"
                     name="newPassword"
                     rules={[{ required: true, message: 'Nhập mật khẩu mới' }]}
                 >
                     <Input.Password placeholder="Nhập mật khẩu mới" />
-                </Form.Item>
-                <Form.Item
+                </FormItem>
+
+                <FormItem
                     label="Xác nhận mật khẩu"
-                    style={{ fontWeight: 'bold' }}
                     name="checkPassword"
                     rules={[{ required: true, message: 'Nhập lại mật khẩu mới' }]}
                 >
                     <Input.Password placeholder="Xác nhận mật khẩu mới" />
-                </Form.Item>
+                </FormItem>
             </Form>
         </Modal>
     )
 }
+
+const FormItem = styled(Form.Item)`
+    font-weight: 500;
+`;
+
